@@ -22,7 +22,6 @@ Follow the steps below to set up and run the project on your local machine.
 
 ```bash
 git clone https://github.com/Obaidul-007/poc-microservice-testing.git
-cd poc-microservice-testing
 ```
 
 ### 2. Install dependencies
