@@ -1,0 +1,206 @@
+{
+	"info": {
+		"_postman_id": "b784facf-59ae-4a64-9f3c-9ebc36d209f8",
+		"name": "User API Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "40363759"
+	},
+	"item": [
+		{
+			"name": "Get All Users",
+			"request": {
+				"method": "GET",
+				"url": {
+					"raw": "http://localhost:3000/api/users",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3000",
+					"path": ["api", "users"]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create User 1",
+			"request": {
+				"method": "POST",
+				"url": {
+					"raw": "http://localhost:3000/api/users",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3000",
+					"path": ["api", "users"]
+				},
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Alice Brown\",\n  \"email\": \"alice@example.com\"\n}"
+				}
+			},
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"response": []
+		},
+		{
+			"name": "Create User 2",
+			"request": {
+				"method": "POST",
+				"url": {
+					"raw": "http://localhost:3000/api/users",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3000",
+					"path": ["api", "users"]
+				},
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Bob Smith\",\n  \"email\": \"bob@example.com\"\n}"
+				}
+			},
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"response": []
+		},
+		{
+			"name": "Update User 1",
+			"request": {
+				"method": "PUT",
+				"url": {
+					"raw": "http://localhost:3000/api/users/1",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3000",
+					"path": ["api", "users", "1"]
+				},
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Alice Updated\",\n  \"email\": \"alice.updated@example.com\"\n}"
+				}
+			},
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"response": []
+		},
+		{
+			"name": "Get All Users After Update",
+			"request": {
+				"method": "GET",
+				"url": {
+					"raw": "http://localhost:3000/api/users",
+					"protocol": "http",
+					"host": ["localhost"],
+					"port": "3000",
+					"path": ["api", "users"]
+				}
+			},
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Verify Updated User\", function () {",
+							"    const users = pm.response.json();",
+							"    const updatedUser = users.find(user => user.id === 1);",
+							"    pm.expect(updatedUser.name).to.eql(\"Alice Updated\");",
+							"    pm.expect(updatedUser.email).to.eql(\"alice.updated@example.com\");",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"response": []
+		},
+		{
+			"name": "Reset State",
+			"request": {
+			  "method": "POST",
+			  "url": {
+				"raw": "http://localhost:3000/api/reset",
+				"protocol": "http",
+				"host": ["localhost"],
+				"port": "3000",
+				"path": ["api", "reset"]
+			  },
+			  "header": [
+				{
+				  "key": "Content-Type",
+				  "value": "application/json"
+				}
+			  ],
+			  "body": {
+				"mode": "raw",
+				"raw": "{}"
+			  }
+			},
+			"event": [
+			  {
+				"listen": "test",
+				"script": {
+				  "exec": [
+					"pm.test(\"Status code is 200\", function () {",
+					"    pm.response.to.have.status(200);",
+					"});"
+				  ],
+				  "type": "text/javascript"
+				}
+			  }
+			],
+			"response": []
+		  }
+		  
+	]
+}

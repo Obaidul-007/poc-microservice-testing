@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ES6",                              // Use modern JavaScript features
+    "module": "commonjs",                         // CommonJS for Node.js compatibility
+    "rootDir": "./",                           // Source directory
+    "outDir": "./dist",                           // Compiled files go to dist
+    "esModuleInterop": true,                      // Allows default imports for CommonJS modules
+    "strict": true,                               // Enables all strict type checking
+    "skipLibCheck": true,                         // Skips checking .d.ts files in node_modules
+    "forceConsistentCasingInFileNames": true      // Ensure file name casing matches
+  },
+  "include": ["src", "tests"],                // Include the source folder for TypeScript
+  "exclude": ["node_modules"]                     // Exclude node_modules to prevent conflicts
+}
